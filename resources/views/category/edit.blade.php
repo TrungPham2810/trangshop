@@ -12,18 +12,18 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6 p-2">
-                        <form method="POST" action="{{ route('categories.save') }}">
+                        <form method="POST" action="{{ route('categories.update', ['id'=>$category->id]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Category Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name Category">
+                                <input type="text" class="form-control" id="exampleInputEmail1" required value="{{$category->name}}" placeholder="Name Category">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Parent</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
+                                <select class="form-control" id="exampleFormControlSelect1" required>
+                                    <option value="0">Please select Category...</option>
+                                    {!! $htmlSelect !!}
                                 </select>
                             </div>
 

@@ -29,9 +29,25 @@ Route::prefix('categories')->group(function () {
             'uses' =>'CategoryController@create'
         ]
     );
-    Route::post('/save_categories', [
-            'as'=> 'categories.save',
-            'uses' =>'CategoryController@save'
+    Route::post('/store', [
+            'as'=> 'categories.store',
+            'uses' =>'CategoryController@store'
+        ]
+    );
+    Route::get('/edit/{id}', [
+            'as'=> 'categories.edit',
+            'uses' =>'CategoryController@edit'
+        ]
+    );
+    Route::post('/update/{id}', [
+            'as'=> 'categories.update',
+            'uses' =>'CategoryController@update'
+        ]
+    );
+
+    Route::get('/delete/{id}', [
+            'as'=> 'categories.delete',
+            'uses' =>'CategoryController@delete'
         ]
     );
 });

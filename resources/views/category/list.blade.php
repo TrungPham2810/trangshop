@@ -6,6 +6,9 @@
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @if(session('message'))
+            <div class="alert alert-success">{{session('message')}}</div>
+        @endif
     @include('admin.layout.content-header', ['name'=>'Category', 'action' => 'List'])
 
         <!-- Main content -->
@@ -19,29 +22,33 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Email</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Parent</th>
+                                <th>Slug</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            <tr>
-                                <td>Mary</td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr>
-                                <td>July</td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
+                            @foreach($data as $category)
+                                <tr>
+                                    <td>{{$category->id}}</td>
+                                    <td>{{$category->name}}</td>
+                                    <td>{{$category->parent_id}}</td>
+                                    <td>{{$category->slug}}</td>
+                                    <td>
+                                        <a class="btn btn-info" href="{{route('categories.edit', ['id'=>$category->id])}}">Edit</a>
+                                        <a class="btn btn-danger" href="{{route('categories.delete', ['id'=>$category->id])}}">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="col-sm-12">
+                        {{ $data->links() }}
                     </div>
 
                 </div>
