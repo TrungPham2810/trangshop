@@ -31,6 +31,13 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('menus.index')}}" class="nav-link {{strpos(Route::current()->getName(), 'menus.') !== false ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Menu</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

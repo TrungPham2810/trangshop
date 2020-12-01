@@ -75,8 +75,17 @@ class CategoryController extends Controller
         return view('category.edit',compact('category', 'htmlSelect'));
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
-
+        try {
+            $this->category->find($id)->update([
+                'name'=> $request->category_name,
+                'parent_id'=> $request->category_parent,
+            ]);
+            $message = 'Update Category success.';
+        } catch (\Exception $e) {
+            $message = 'Error: '.$e->getMessage();
+        }
+        return redirect()->route('categories.index')->with('message', $message);
     }
 }
