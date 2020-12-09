@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
+use Illuminate\Support\Facades\Auth;
+
 class CategoryController extends Controller
 {
     const ROUTE = 'category';
@@ -19,13 +21,13 @@ class CategoryController extends Controller
     {
         $route =  self::ROUTE;
         $data = $this->category->latest()->paginate(5);
-        return view('category.list', compact('route', 'data'));
+        return view('admin.category.list', compact('route', 'data'));
     }
 
     public function create()
     {
         $htmlSelect = $this->handleCategorySelect();
-        return view('category.add',compact('htmlSelect'));
+        return view('admin.category.add',compact('htmlSelect'));
     }
 
     public function handleCategorySelect($id = 0, $currentCategory = 0)
@@ -69,10 +71,9 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-
         $category = $this->category->find($id);
         $htmlSelect = $this->handleCategorySelect(0, $category->parent_id);
-        return view('category.edit',compact('category', 'htmlSelect'));
+        return view('admin.category.edit',compact('category', 'htmlSelect'));
     }
 
     public function update($id, Request $request)

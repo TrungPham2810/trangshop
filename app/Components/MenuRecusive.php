@@ -16,11 +16,15 @@ class MenuRecusive
     protected $htmlSelect = '';
     protected $data = [];
 
-    public function menuRecusiveAdd($parentId = 0, $delimiter = '') {
+    public function menuRecusiveAdd($parentId = 0, $currentParent = 0, $delimiter = '') {
         $data = Menu::where('parent_id', $parentId)->get();
         foreach ($data as $value) {
-            $this->htmlSelect .= "<option value='$value->id'>".$delimiter.$value->name."</option>";
-            $this->menuRecusiveAdd($value->id, $delimiter.'--');
+            if($value->id != 0 && $value->id == $currentParent) {
+                $this->htmlSelect .= "<option value='$value->id' selected>".$delimiter.$value->name."</option>";
+            } else {
+                $this->htmlSelect .= "<option value='$value->id'>".$delimiter.$value->name."</option>";
+            }
+            $this->menuRecusiveAdd($value->id, $currentParent,$delimiter.'--');
         }
         return $this->htmlSelect;
     }
