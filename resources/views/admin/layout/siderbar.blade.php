@@ -45,6 +45,13 @@
                         <p>Products</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('slider.index')}}" class="nav-link {{strpos(Route::current()->getName(), 'slider.') !== false ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Slider</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

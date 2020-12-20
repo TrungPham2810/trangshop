@@ -9,4 +9,6 @@ class Category extends Model
     protected $fillable = [
         'name', 'parent_id','id'
     ];
+
+    protected $guarded = [];
 }

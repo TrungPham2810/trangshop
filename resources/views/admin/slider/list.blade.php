@@ -1,9 +1,9 @@
 @extends('admin.layout.admin')
 @section('title')
-    <title>List Product</title>
+    <title>List Slider</title>
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{asset('admins/product/list/list.css')}}">
+    <link rel="stylesheet" href="{{asset('admins/slider/list/list.css')}}">
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -11,14 +11,14 @@
         @if(session('message'))
             <div class="alert alert-success">{{session('message')}}</div>
     @endif
-    @include('admin.layout.content-header', ['name'=>'Product', 'action' => 'List'])
+    @include('admin.layout.content-header', ['name'=>'Slider', 'action' => 'List'])
 
     <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12 p-2">
-                        <a href="{{route('product.create')}}" class="btn btn-primary float-right">Add Product</a>
+                        <a href="{{route('slider.create')}}" class="btn btn-primary float-right">Add Slider</a>
                     </div>
                     <div class="col-sm-12">
                         <table class="table">
@@ -27,24 +27,21 @@
                                 <th>Id</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Price</th>
-                                <th>Category</th>
+                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                            @foreach($data as $product)
+                            @foreach($data as $slider)
                                 <tr>
-                                    <td>{{$product->id}}</td>
-                                    <td><img class="small_image_product" style="" src="{{asset($product->feature_image_path)}}" alt="{{$product->feature_image_name}}"></td>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{number_format($product->price)}}</td>
-                                    <td>{{optional($product->category)->name}}</td>
-                                    
+                                    <td>{{$slider->id}}</td>
+                                    <td><img class="small_image_product" style="" src="{{asset($slider->image_path)}}" alt="{{$slider->image_name}}"></td>
+                                    <td>{{$slider->name}}</td>
+                                    <td>{{$slider->description}}</td>
                                     <td>
-                                        <a class="btn btn-info" href="{{route('product.edit', ['id'=>$product->id])}}">Edit</a>
-                                        <button class="btn btn-danger delete_product" data-url="{{route('product.delete', ['id'=>$product->id])}}">Delete</button>
+                                        <a class="btn btn-info" href="{{route('slider.edit', ['id'=>$slider->id])}}">Edit</a>
+                                        <button class="btn btn-danger delete_slider" data-url="{{route('slider.delete', ['id'=>$slider->id])}}">Delete</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -67,6 +64,6 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('admins/product/list/list.js')}}"></script>
+    {{--<script src="{{asset('admins/product/list/list.js')}}"></script>--}}
     <script src="{{asset('vendor/sweetAlert2/sweetalert2@10.js')}}"></script>
 @endsection

@@ -9,7 +9,7 @@
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-    @include('admin.layout.content-header', ['name'=>'Product', 'action' => 'Edit'])
+    @include('admin.layout.content-header', ['name'=>'Slider', 'action' => 'Edit'])
     <!-- Main content -->
 
         <form method="POST" action="{{ route('product.update', ['id'=>$product->id]) }}" enctype="multipart/form-data">
