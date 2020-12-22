@@ -64,6 +64,6 @@
 @endsection
 
 @section('js')
-    {{--<script src="{{asset('admins/product/list/list.js')}}"></script>--}}
+    <script src="{{asset('admins/slider/list/list.js')}}"></script>
     <script src="{{asset('vendor/sweetAlert2/sweetalert2@10.js')}}"></script>
 @endsection

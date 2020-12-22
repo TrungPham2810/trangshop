@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror" value="{{old('description')}}" name="description" placeholder="Description">
+                            <textarea rows="3" name="description" class="form-control tinymce_editor_int @error('description') is-invalid @enderror">{{old('description')}}</textarea>
                             @error('description')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

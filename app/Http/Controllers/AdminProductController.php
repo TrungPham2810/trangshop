@@ -183,7 +183,6 @@ class AdminProductController extends Controller
         }
 
         return redirect()->route('product.index');
-
     }
 
     public function delete($id)

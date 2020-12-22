@@ -168,6 +168,40 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
         );
     });
 
+    Route::group(['prefix' => 'config', 'middleware' => ['auth']], function () {
+        Route::get('/', [
+                'as'=> 'config.index',
+                'uses' =>'CoreConfigController@index'
+            ]
+        );
+        Route::get('/create', [
+                'as'=> 'config.create',
+                'uses' =>'CoreConfigController@create'
+            ]
+        );
+        Route::post('/store', [
+                'as'=> 'config.store',
+                'uses' =>'CoreConfigController@store'
+            ]
+        );
+        Route::get('/edit/{id}', [
+                'as'=> 'config.edit',
+                'uses' =>'CoreConfigController@edit'
+            ]
+        );
+        Route::post('/update/{id}', [
+                'as'=> 'config.update',
+                'uses' =>'CoreConfigController@update'
+            ]
+        );
+
+        Route::get('/delete/{id}', [
+                'as'=> 'config.delete',
+                'uses' =>'CoreConfigController@delete'
+            ]
+        );
+    });
+
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

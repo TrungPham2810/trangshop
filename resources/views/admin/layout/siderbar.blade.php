@@ -52,6 +52,13 @@
                         <p>Slider</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('config.index')}}" class="nav-link {{strpos(Route::current()->getName(), 'config.') !== false ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Config</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
