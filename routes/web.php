@@ -12,9 +12,17 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'as'=> 'home',
+    'uses' =>'HomeController@index'
+]);
+
+
+Route::get('/test', [
+    'as'=> 'test',
+    'uses' =>'HomeController@test'
+]);
+
 
 Route::get('/login', [
     'as'=> 'login',
@@ -35,7 +43,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [
                 'as'=> 'categories.index',
-                'uses' =>'CategoryController@index'
+                'uses' =>'CategoryController@index',
+                'middleware'=> 'can:category-list'
             ]
         );
         Route::get('/create', [
@@ -65,7 +74,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
             ]
         );
     });
-
     Route::prefix('menus')->group(function () {
         Route::get('/', [
                 'as'=> 'menus.index',
@@ -202,6 +210,106 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
         );
     });
 
+    Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
+        Route::get('/', [
+                'as'=> 'user.index',
+                'uses' =>'AdminUserController@index'
+            ]
+        );
+        Route::get('/create', [
+                'as'=> 'user.create',
+                'uses' =>'AdminUserController@create'
+            ]
+        );
+        Route::post('/store', [
+                'as'=> 'user.store',
+                'uses' =>'AdminUserController@store'
+            ]
+        );
+        Route::get('/edit/{id}', [
+                'as'=> 'user.edit',
+                'uses' =>'AdminUserController@edit'
+            ]
+        );
+        Route::post('/update/{id}', [
+                'as'=> 'user.update',
+                'uses' =>'AdminUserController@update'
+            ]
+        );
+
+        Route::get('/delete/{id}', [
+                'as'=> 'user.delete',
+                'uses' =>'AdminUserController@delete'
+            ]
+        );
+    });
+    Route::group(['prefix' => 'role', 'middleware' => ['auth']], function () {
+        Route::get('/', [
+                'as'=> 'role.index',
+                'uses' =>'AdminRoleController@index'
+            ]
+        );
+        Route::get('/create', [
+                'as'=> 'role.create',
+                'uses' =>'AdminRoleController@create'
+            ]
+        );
+        Route::post('/store', [
+                'as'=> 'role.store',
+                'uses' =>'AdminRoleController@store'
+            ]
+        );
+        Route::get('/edit/{id}', [
+                'as'=> 'role.edit',
+                'uses' =>'AdminRoleController@edit'
+            ]
+        );
+        Route::post('/update/{id}', [
+                'as'=> 'role.update',
+                'uses' =>'AdminRoleController@update'
+            ]
+        );
+
+        Route::get('/delete/{id}', [
+                'as'=> 'role.delete',
+                'uses' =>'AdminRoleController@delete'
+            ]
+        );
+    });
+
+    Route::group(['prefix' => 'permission', 'middleware' => ['auth']], function () {
+        Route::get('/', [
+                'as'=> 'permission.index',
+                'uses' =>'AdminPermissionController@index'
+            ]
+        );
+        Route::get('/create', [
+                'as'=> 'permission.create',
+                'uses' =>'AdminPermissionController@create'
+            ]
+        );
+        Route::post('/store', [
+                'as'=> 'permission.store',
+                'uses' =>'AdminPermissionController@store'
+            ]
+        );
+        Route::get('/edit/{id}', [
+                'as'=> 'permission.edit',
+                'uses' =>'AdminPermissionController@edit'
+            ]
+        );
+        Route::post('/update/{id}', [
+                'as'=> 'permission.update',
+                'uses' =>'AdminPermissionController@update'
+            ]
+        );
+
+        Route::get('/delete/{id}', [
+                'as'=> 'permission.delete',
+                'uses' =>'AdminPermissionController@delete'
+            ]
+        );
+    });
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

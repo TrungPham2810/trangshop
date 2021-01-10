@@ -1,0 +1,8 @@
+.card-header {
+    background: #00A000;
+}
+
+input.checkbox_child, .check_all, .checkbox_wrapper {
+    margin-right: 7px;
+    transform: scale(1.3);
+}

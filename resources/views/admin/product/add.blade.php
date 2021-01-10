@@ -47,7 +47,6 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Category</label>
                                 <select class="form-control select2_init @error('category') is-invalid @enderror" id="exampleFormControlSelect1" name="category" required>
-                                    <option value="0">Please Select Category...</option>
                                     {!! $htmlSelect !!}
                                 </select>
                                 @error('category')
@@ -73,7 +72,6 @@
                     </div>
 
                     <div class="col-sm-12">
-
                         <div class="form-group">
                             <label for="exampleInputEmail1">Content</label>
                             <textarea rows="8" name="contents" class="form-control tinymce_editor_int @error('contents') is-invalid @enderror">{{old('contents')}}</textarea>

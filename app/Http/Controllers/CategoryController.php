@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $route =  self::ROUTE;
-        $data = $this->category->latest()->paginate(5);
+        $data = $this->category->latest()->paginate(10);
         return view('admin.category.list', compact('route', 'data'));
     }
 
@@ -44,6 +44,7 @@ class CategoryController extends Controller
             $this->category->create([
                 'name'=> $request->category_name,
                 'parent_id'=> $request->category_parent,
+                'slug' => str_replace(" ","_",strtolower($request->category_name))
             ]);
             $message = 'Create Category success.';
         } catch (\Exception $e) {
@@ -82,6 +83,7 @@ class CategoryController extends Controller
             $this->category->find($id)->update([
                 'name'=> $request->category_name,
                 'parent_id'=> $request->category_parent,
+                'slug' => str_replace(" ","_",strtolower($request->category_name))
             ]);
             $message = 'Update Category success.';
         } catch (\Exception $e) {

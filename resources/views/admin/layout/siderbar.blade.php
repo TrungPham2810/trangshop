@@ -59,6 +59,27 @@
                         <p>Config</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('user.index')}}" class="nav-link {{strpos(Route::current()->getName(), 'user.') !== false ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Users</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('role.index')}}" class="nav-link {{strpos(Route::current()->getName(), 'role.') !== false ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Roles</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('permission.create')}}" class="nav-link {{strpos(Route::current()->getName(), 'permission.') !== false ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Manage Permissions</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
