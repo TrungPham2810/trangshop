@@ -9,5 +9,4 @@ $( document ).ready (function() {
        $(this).parents().find('.checkbox_wrapper').prop('checked', $(this).is(":checked"));
    })
 
-
 });

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Shop;
+use App\Test;
+use App\User;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
 use Illuminate\Support\Facades\Auth;
@@ -11,14 +14,25 @@ class CategoryController extends Controller
 {
     const ROUTE = 'category';
     protected $category;
+    protected $shop;
+    protected $test;
     public function __construct(
-        Category $category
+        Category $category,
+        Shop $shop,
+        Test $test
     ) {
         $this->category = $category;
+        $this->test = $test;
+        $this->shop = $shop;
     }
 
     public function index()
     {
+        $shop = $this->shop->find(1);
+        $listTest = $shop->test;
+        $test = $this->test->find(1);
+        $listShop = $test->shops;
+
         $route =  self::ROUTE;
         $data = $this->category->latest()->paginate(10);
         return view('admin.category.list', compact('route', 'data'));
